@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    controller: wmqcontroller
+    creator: spade
+    name: wmqcontroller
+    project: eppe
+    service: wmq-service
+    stack: eppe
+    type: replication
+    zone: app
+  name: wmqcontroller
+  namespace: data
+spec:
+  replicas: 0
+  selector:
+    creator: spade
+    name: wmqpod
+    type: pod
+  template:
+    metadata:
+      labels:
+        creator: spade
+        name: wmqpod
+        type: pod
+    spec:
+      containers:
+      - image: nwtspaderegistry-on.azurecr.io/eppe/wmq:v2.ssh
+        imagePullPolicy: Always
+        name: wmqpod
+        ports:
+        - containerPort: 1414
+          name: app-q
+        - containerPort: 1415
+          name: data-q
+        - containerPort: 8080
+          name: http
+        - containerPort: 22
+          name: ssh
+        env:
+        - name: LICENSE
+          value: accept
+        securityContext:
+          privileged: true
+      nodeSelector:
+        zone: app
+      restartPolicy: Always

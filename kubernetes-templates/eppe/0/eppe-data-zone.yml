@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    controller: appdatacontroller
+    creator: spade
+    name: appdatacontroller
+    project: eppe
+    service: datawas-service
+    stack: eppe
+    type: replication
+    zone: data
+  name: datawascontroller
+  namespace: data
+spec:
+  replicas: 0
+  selector:
+    creator: spade
+    name: appdatapod
+    type: pod
+  template:
+    metadata:
+      labels:
+        creator: spade
+        name: datawaspod
+        type: pod
+    spec:
+      containers:
+      - image: nwtspaderegistry-on.azurecr.io/eppe/datazone
+        imagePullPolicy: Always
+        name: datawaspod
+        ports:
+        - containerPort: 9060
+          name: admin
+          protocol: TCP
+        - containerPort: 9080
+          name: http
+          protocol: TCP
+        securityContext:
+          privileged: false
+      nodeSelector:
+        zone: data
+      restartPolicy: Always
