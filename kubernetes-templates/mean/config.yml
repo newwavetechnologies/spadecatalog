@@ -1,8 +1,8 @@
-name: # Name of the Catalog Entry
+name: MEAN Stack
 description: |
-  # Description of the Catalog Entry
-version: # Version of the Catalog to be used
-category: # Category to be used for searching catalog entries
-maintainer: # The maintainer of the catalog entry
+  Deployment of a basic MEAN (MongoDB, Express, AngularJS, NodeJS) stack. Images pulled mainly from Dockerhub
+version: 1.0
+category: demo
+maintainer: Brandon Adams
 license: # The license
-projectURL: # A URL related to the catalog entry
+projectURL: newwave.io
