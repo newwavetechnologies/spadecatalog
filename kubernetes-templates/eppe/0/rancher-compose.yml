@@ -1,7 +1,17 @@
 .catalog:
-  name: # Name of the versioned template of the Catalog Entry
-  version: # Version of the versioned template of the Catalog Entry
-  description: # Description of the versioned template of the Catalog Entry
+  name: EPPE # Name of the versioned template of the Catalog Entry
+  version: 5.0-spade # Version of the versioned template of the Catalog Entry
+  description: Sample EPPE deployment for SPADE demo # Description of the versioned template of the Catalog Entry
   uuid: # Unique identifier to be used for upgrades. Please see note.
-  minimum_rancher_version: # The minimum version of Rancher that supports the template
-  questions: #Used to request user input for configuration options
+  minimum_rancher_version: v1.1.4 # The minimum version of Rancher that supports the template
+  questions:
+    - variable: "ghost_db"
+      label: "Ghost database name on mysql"
+      required: true
+      type: "string"
+      default: "ghost"
+    - variable: "ghost_db_user"
+      label: "Ghost database username"
+      required: true
+      type: "string"
+      default: "ghostuser"#Used to request user input for configuration options
