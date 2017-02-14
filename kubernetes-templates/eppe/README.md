@@ -1,0 +1,1 @@
+Demo stack deployment for the SPADE Catalog
