@@ -1,7 +1,7 @@
 name: EPPE # Name of the Catalog Entry
 description: |
   Kubernetes catalog entry for a sample EPPE deployment
-version: default # Version of the Catalog to be used
+version: 5.0-spade # Version of the Catalog to be used
 category: demo # Category to be used for searching catalog entries
 maintainer: Brandon Adams # The maintainer of the catalog entry
 license: # The license
