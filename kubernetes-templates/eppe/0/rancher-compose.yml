@@ -5,13 +5,24 @@
   uuid: # Unique identifier to be used for upgrades. Please see note.
   minimum_rancher_version: v1.1.4 # The minimum version of Rancher that supports the template
   questions:
-    - variable: "ghost_db"
-      label: "Ghost database name on mysql"
+    - variable: "app_http_port"
+      label: "HTTP port for the app zone server"
       required: true
-      type: "string"
-      default: "ghost"
-    - variable: "ghost_db_user"
-      label: "Ghost database username"
+      type: "int"
+      default: "30080"
+    - variable: "app_admin_port"
+      label: "Admin console port for the app zone server"
       required: true
-      type: "string"
-      default: "ghostuser"#Used to request user input for configuration options
+      type: "int"
+      default: "30060"
+    - variable: "app_http_port"
+      label: "HTTP port for the app zone server"
+      required: true
+      type: "int"
+      default: "30080"
+    - variable: "app_admin_port"
+      label: "Admin console port for the app zone server"
+      required: true
+      type: "int"
+      default: "30060"
+							      

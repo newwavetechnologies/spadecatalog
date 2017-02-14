@@ -11,7 +11,7 @@ metadata:
     type: replication
     zone: app
   name: wmqcontroller
-  namespace: data
+  namespace: app
 spec:
   replicas: 0
   selector:
