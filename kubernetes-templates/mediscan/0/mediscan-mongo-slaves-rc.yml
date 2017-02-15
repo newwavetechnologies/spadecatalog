@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  generation: 1
+  labels:
+    name: mediscan-mongo-slave
+  name: mediscan-mongo-slave-rc
+  namespace: data
+spec:
+  replicas: 2
+  selector:
+    name: mediscan-mongo-slave
+  template:
+    metadata:
+      labels:
+        secondary: 'true'
+        name: mediscan-mongo-slave
+    spec:
+      containers:
+      - image: husseingalal/mongo-k8s
+        imagePullPolicy: Always
+        name: mediscan-mongo-slave
+        command:
+        - "/run.sh"
+        - mongod
+        - "--replSet"
+        - rs0
+        - "--smallfiles"
+        - "--noprealloc"
+        env:
+        - name: PRIMARY
+          value: 'false'
+        - name: MONGO_PRIMARY_SERVICE_HOST
+          value: mediscan-mongo-master.data
+        ports:
+        - containerPort: 27017
+          protocol: TCP
+        volumeMounts:
+        - mountPath: "/data/db"
+          name: mongo-storage
+      volumes:
+      - name: mongo-storage
+        emptyDir: {}
+      nodeSelector:
+        zone: data
+      restartPolicy: Always

@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mediscan-mongo-master
+  name: mediscan-mongo-master
+  namespace: data
+spec:
+  ports:
+  - name: mongo
+    nodePort: 30427
+    port: 27017
+    protocol: TCP
+    targetPort: 27017
+  selector:
+    name: mediscan-mongo-master
+  sessionAffinity: None
+  type: NodePort

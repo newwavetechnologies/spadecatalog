@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: mediscan-data
+  name: mediscan-data-rc
+  namespace: data
+spec:
+  replicas: 1
+  selector:
+    name: mediscan-data
+  template:
+    metadata:
+      labels:
+        name: mediscan-data
+    spec:
+      containers:
+      - image: nwtspaderegistry-on.azurecr.io/mediscan/data:demo
+        imagePullPolicy: Always
+        name: mediscan-data
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+        env:
+        - name: MEDISCAN_NLP_SERVICE_HOST
+          value: mediscan-nlp.app
+        - name: MEDISCAN_NLP_SERVICE_PORT_HTTP
+          value: '8080'
+        - name: MEDISCAN_ACTIVEMQ_SERVICE_HOST
+          value: mediscan-activemq.app
+        - name: MEDISCAN_ACTIVEMQ_SERVICE_PORT_MQ
+          value: '61616'
+        - name: MEDISCAN_MONGO_ADDR
+          value: mediscan-mongo-master.data
+        - name: MEDISCAN_MONGO_PORT
+          value: '27017'
+      nodeSelector:
+        zone: data
+      restartPolicy: Always

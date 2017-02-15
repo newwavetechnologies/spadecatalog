@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: mediscan-web
+  name: mediscan-web-rc
+  namespace: web
+spec:
+  replicas: 1
+  selector:
+    name: mediscan-web
+  template:
+    metadata:
+      creationTimestamp: 
+      labels:
+        name: mediscan-web
+    spec:
+      containers:
+      - image: nwtspaderegistry-on.azurecr.io/mediscan/app:demo
+        imagePullPolicy: Always
+        name: mediscan-web
+        ports:
+        - containerPort: 8084
+          protocol: TCP
+        env:
+        - name: KUBERNETES_PUBLIC_ENDPOINT
+          value: http://${k8s_address}/r/projects/1a7/kubernetes
+        - name: KUBERNETES_SECRET_USERNAME
+          value: ${k8s_api_secret}
+        - name: KUBERNETES_SECRET_PASSWORD
+          value: '${k8s_api_password}'
+        - name: MEDISCAN_QUEUEAPP_ADDR
+          value: mediscan-queue.app
+        - name: MEDISCAN_QUEUEAPP_PORT
+          value: '8081'
+        - name: MEDISCAN_MONGO_ADDR
+          value: mediscan-mongo-master.data
+        - name: MEDISCAN_MONGO_PORT
+          value: '27017'
+      nodeSelector:
+        zone: web
+      restartPolicy: Always

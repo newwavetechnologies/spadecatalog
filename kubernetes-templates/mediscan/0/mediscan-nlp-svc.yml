@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mediscan-nlp
+  name: mediscan-nlp
+  namespace: app
+spec:
+  ports:
+  - name: http
+    nodePort: 31230
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: mediscan-nlp
+  sessionAffinity: None
+  type: NodePort

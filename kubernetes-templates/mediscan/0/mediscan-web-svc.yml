@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mediscan-web
+  name: mediscan-web
+  namespace: web
+spec:
+  ports:
+  - name: http
+    nodePort: 32340
+    port: 8080
+    protocol: TCP
+    targetPort: 8084
+  selector:
+    name: mediscan-web
+  type: NodePort

@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: mediscan-queue
+  name: mediscan-queue-rc
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    name: mediscan-queue
+  template:
+    metadata:
+      labels:
+        name: mediscan-queue
+    spec:
+      containers:
+      - image: nwtspaderegistry-on.azurecr.io/mediscan/queue:demo
+        imagePullPolicy: Always
+        name: queue
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+        env:
+        - name: MEDISCAN_ACTIVEMQ_ADDR
+          value: mediscan-activemq.app
+        - name: MEDISCAN_ACTIVEMQ_PORT
+          value: '61616'
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        zone: app
+      restartPolicy: Always
