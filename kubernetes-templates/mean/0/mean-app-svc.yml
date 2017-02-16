@@ -13,4 +13,4 @@ spec:
       nodePort: 30001
       protocol: TCP
   selector:
-    name: web-controller
+    name: web
