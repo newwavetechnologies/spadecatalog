@@ -2,18 +2,14 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    controller: datawascontroller
     creator: spade
     name: datawascontroller
-    project: eppe
-    service: datawas-service
-    stack: eppe
     type: replication
     zone: data
   name: datawascontroller
   namespace: data
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     creator: spade
     name: datawaspod
@@ -26,7 +22,7 @@ spec:
         type: pod
     spec:
       containers:
-      - image: nwtspaderegistry-on.azurecr.io/eppe/datazone
+      - image: nwtspaderegistry-on.azurecr.io/eppe/datazone:demo
         imagePullPolicy: Always
         name: datawaspod
         ports:

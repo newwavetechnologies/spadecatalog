@@ -2,18 +2,14 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    controller: appwascontroller
     creator: spade
     name: appwascontroller
-    project: eppe
-    service: appwas-service
-    stack: eppe
     type: replication
     zone: app
   name: appwascontroller
   namespace: app
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     creator: spade
     name: appwaspod
@@ -26,7 +22,7 @@ spec:
         type: pod
     spec:
       containers:
-      - image: nwtspaderegistry-on.azurecr.io/eppe/appzone
+      - image: nwtspaderegistry-on.azurecr.io/eppe/appzone:demo
         imagePullPolicy: Always
         name: appwaspod
         ports:
