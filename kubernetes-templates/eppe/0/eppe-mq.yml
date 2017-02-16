@@ -13,7 +13,7 @@ metadata:
   name: wmqcontroller
   namespace: app
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     creator: spade
     name: wmqpod
