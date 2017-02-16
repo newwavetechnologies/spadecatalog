@@ -17,7 +17,7 @@ spec:
         name: mediscan-nlp
     spec:
       containers:
-      - image: nwtspaderegistry-on.azurecr.io/mediscan/nlp
+      - image: nwtspaderegistry-on.azurecr.io/mediscan/nlp:demo
         name: mediscan-nlp
         ports:
         - containerPort: 8080
