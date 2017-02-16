@@ -6,6 +6,7 @@ metadata:
   name: mongo
   namespace: data
 spec:
+  type: NodePort
   ports:
     - port: 27018
       nodePort: 30007
