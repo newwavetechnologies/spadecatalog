@@ -20,9 +20,9 @@ spec:
       nodePort: 30060
       targetPort: 9060
     - name: http
-      port: 9080
+      port: 30080
       nodePort: 30080
-      targetPort: 9080
+      targetPort: 30080
   selector:
     creator: spade
     name: appwaspod
