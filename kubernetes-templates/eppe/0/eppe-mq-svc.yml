@@ -6,12 +6,12 @@ metadata:
     creator: spade
     name: wmqcontroller
     project: eppe
-    service: wmq-service
+    service: mq-service
     stack: eppe
     type: service
-    zone: data
-  name: wmq-service
-  namespace: data
+    zone: app
+  name: mq-service
+  namespace: app
 spec:
   type: NodePort
   ports:
