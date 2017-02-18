@@ -15,7 +15,7 @@ spec:
         name: web
     spec:
       containers:
-      - image: nwtspaderegistry-on.azurecr.io/nwtspade/mean:demo
+      - image: nwtspaderegistry-on.azurecr.io/nwtspade/mean:rama
         name: web
         ports:
         - containerPort: 3000
