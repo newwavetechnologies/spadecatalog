@@ -10,7 +10,7 @@ metadata:
     stack: eppe
     type: service
     zone: app
-  name: mq-service.app
+  name: mq-service
   namespace: app
 spec:
   type: NodePort
